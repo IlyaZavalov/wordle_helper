@@ -9,6 +9,15 @@ std::size_t diff_chars(const std::string& s) {
 
 int main() {
     std::ifstream fin("vocabulary.txt");
+
+    if(!fin.is_open()) {
+        std::cout << "cannot find vocabulary.txt" << std::endl;
+        std::cout << "press enter to exit" << std::endl;
+        std::string buf;
+        std::cin >> buf;
+        return 0;
+    }
+
     std::vector<std::string> voc;
     std::size_t word_length;
 
