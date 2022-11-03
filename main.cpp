@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 #include "WordleHelper.h"
 
 std::size_t diff_chars(const std::string& s) {
@@ -41,7 +42,14 @@ int main() {
             break;
         }
 
-        helper.new_attempt(word, result);
+        try {
+            helper.new_attempt(word, result);
+        }
+        catch(std::invalid_argument& exc) {
+            std::cout << exc.what() << std::endl;
+            std::cout << "try enter strings again" << std::endl;
+            continue;
+        }
         auto suitable_words = helper.get_suitable_words();
 
         std::cout << "there are " << suitable_words.size() << " suitable words" << std::endl;
